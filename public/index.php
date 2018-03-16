@@ -7,7 +7,7 @@
 
 <h1><?php
     echo "マスタデータ管理ツール";
-    readfile('../test.php');
+    require_once('../test.php');
 ?>
 </h1>
 </body>
