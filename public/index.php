@@ -7,7 +7,10 @@
 
 <h1><?php
     echo "マスタデータ管理ツール";
-    require_once('../test.php');
+    require('../framework/ClassLoader.php');
+    $loader = new ClassLoader();
+    new Test();
+
 ?>
 </h1>
 </body>
