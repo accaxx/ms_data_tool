@@ -6,7 +6,6 @@
 <body>
 
 <h1><?php
-    use test\Test;
     use framework\Router;
 
     echo "マスタデータ管理ツール";
@@ -14,7 +13,6 @@
     require_once $root . '/framework/ClassLoader.php';
     $loader = new ClassLoader($root);
     $loader->register();
-    new Test();
 
     $router = new Router();
     $router->setRoute();

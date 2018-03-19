@@ -11,13 +11,6 @@ class Router
     ];
 
     /**
-     * Router constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Requestから必要なコントローラとメソッドを呼び出す
      * @return response Controller
      */
