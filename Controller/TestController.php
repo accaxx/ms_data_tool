@@ -8,8 +8,13 @@ class TestController
         echo "TestController construct";
     }
 
-    public function index()
+    public function indexGet()
     {
-        echo "index method";
+        echo "index Get method";
+    }
+
+    public function indexPost()
+    {
+        echo "index Post method";
     }
 }

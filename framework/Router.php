@@ -4,46 +4,63 @@ namespace framework;
 class Router
 {
     /**
-     * 特定のURIに対してコントローラ/メソッドを定義
+     * GETメソッド/URIに対してコントローラ/メソッドを定義
      */
-    public $route_array = [
-        '/test' => 'TestController@index',
+    public $route_get_array = [
+        '/test' => 'TestController@indexGet',
     ];
 
     /**
-     * Requestから必要なコントローラとメソッドを呼び出す
-     * @return response Controller
+     * POSTメソッド/URIに対してコントローラ/メソッドを定義
      */
-    public function setRoute()
+    public $route_post_array = [
+        '/test' => 'TestController@indexPost',
+    ];
+
+    /**
+     * Requestから必要なコントローラとメソッドを呼び出して実行
+     * @return response Controller Action
+     */
+    public function execActionByRequest()
     {
-        // RequestのURIから指定メソッドがあるか条件分岐
-        if (array_key_exists($this->getRequestUri(), $this->route_array)){
-            $route = $this->route_array[$this->getRequestUri()];
-            return $this->getControllerAndMethodByRoute($route);
+        $method =  $_SERVER['REQUEST_METHOD'];
+        $uri = $_SERVER['REQUEST_URI'];
+
+        // HTTPメソッドにより対応したルーティングを取得
+        $route_array = $this->getRouteArrayByHttpMethod($method);
+
+        if (!array_key_exists($uri, $route_array)) {
+            return false;
         }
-        return false;
+        $route = $route_array[$uri];
+        $controller_array = $this->getControllerAndMethodByRoute($route);
+        $obj = new $controller_array['controller']; // 変数からインスタンス化
+        return call_user_func(array($obj, $controller_array['action'])); //変数で関数を実行するため
     }
 
     /**
-     * Route(*Controller@method)から指定のコントローラ・メソッドを呼び出す
+     * Route(*Controller@method)から指定のコントローラ・メソッドを取得
      * @param $route // URIから指定したメソッド
      */
     private function getControllerAndMethodByRoute($route)
     {
         // $routeを @ の前後で分ける
-        list($controller_name, $method) = explode("@", $route);
+        list($controller_name, $action) = explode("@", $route);
         $controller = "\Controller\\" . $controller_name;
-
-        $obj = new $controller; // 変数からインスタンス化
-        return call_user_func(array($obj, $method)); //変数で関数を実行するため
+        return compact('controller', 'action');
     }
 
     /**
-     * RequestのURLを取得
-     * @return string // URIパラメータ
+     * METHODからRouteを分岐
+     * @return string // HTTPメソッド
      */
-    private function getRequestUri()
+    private function getRouteArrayByHttpMethod($method)
     {
-        return $_SERVER['REQUEST_URI'];
+        if ($method === "GET") {
+            return $this->route_get_array;
+        } elseif($method === "POST") {
+            return $this->route_post_array;
+        }
     }
+
 }

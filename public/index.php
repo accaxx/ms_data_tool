@@ -15,7 +15,7 @@
     $loader->register();
 
     $router = new Router();
-    $router->setRoute();
+    $router->execActionByRequest();
 ?>
 </h1>
 </body>
