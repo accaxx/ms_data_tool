@@ -10,7 +10,7 @@ class ClassLoader
         $this->root_dir = $root;
     }
 
-    /*
+    /**
      * オートローダーへ登録
      */
     public function register()
@@ -18,8 +18,9 @@ class ClassLoader
         spl_autoload_register(array('ClassLoader', 'loadClass'));
     }
 
-    /*
+    /**
      * 名前空間とクラス名からファイルを特定して読み込む
+     * @return response File
      */
     public function loadClass($class)
     {
