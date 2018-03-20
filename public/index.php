@@ -13,9 +13,6 @@
     $loader = new ClassLoader($root);
     $loader->register();
 
-    $database = new Tests();
-    $database->getAll();
-
     $router = new Router();
     $router->execActionByRequest();
 ?>
