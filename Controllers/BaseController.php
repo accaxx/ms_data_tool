@@ -8,7 +8,7 @@ class BaseController
      * @param $view_name
      * todo $root定数化
      */
-    public function view($view_name)
+    protected function view($view_name)
     {
         $root = '/Users/asahi.aihara/ms_data_tool/';
         $view = $root . 'resources/view/' . $view_name .'.html';

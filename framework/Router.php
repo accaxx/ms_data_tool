@@ -25,7 +25,7 @@ class Router
     }
 
     /**
-     * Route(*Controller@method)から指定のコントローラ・メソッドを取得
+     * Route(Controller@method)から指定のコントローラ・メソッドを取得
      * @param array controllerとactionの連想配列
      */
     private function getControllerAndMethodByRoute($route)
@@ -43,7 +43,7 @@ class Router
     private function getRouteArrayByHttpMethod($http_method)
     {
         // routeディレクトリからroute配列を読み込み
-        include('/Users/asahi.aihara/ms_data_tool/route/web.php');
+        require('/Users/asahi.aihara/ms_data_tool/route/web.php');
 
         if ($http_method === 'GET') {
             return $route_get_array;
