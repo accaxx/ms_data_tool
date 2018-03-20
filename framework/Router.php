@@ -45,8 +45,8 @@ class Router
     private function getControllerAndMethodByRoute($route)
     {
         // $routeを @ の前後で分ける
-        list($controller_name, $method) = explode("@", $route);
-        $controller = "\Controller\\" . $controller_name;
+        list($controller_name, $method) = explode('@', $route);
+        $controller = '\Controllers\\' . $controller_name;
         return compact('controller', 'method');
     }
 
@@ -56,9 +56,9 @@ class Router
      */
     private function getRouteArrayByHttpMethod($http_method)
     {
-        if ($http_method === "GET") {
+        if ($http_method === 'GET') {
             return $this->route_get_array;
-        } elseif($http_method === "POST") {
+        } elseif($http_method === 'POST') {
             return $this->route_post_array;
         }
     }
