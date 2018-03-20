@@ -4,20 +4,6 @@ namespace framework;
 class Router
 {
     /**
-     * GETメソッド/URIに対してコントローラ/メソッドを定義
-     */
-    private $route_get_array = [
-        '/test' => 'TestController@indexGet',
-    ];
-
-    /**
-     * POSTメソッド/URIに対してコントローラ/メソッドを定義
-     */
-    private $route_post_array = [
-        '/test' => 'TestController@indexPost',
-    ];
-
-    /**
      * Requestから必要なコントローラとメソッドを呼び出して実行
      * @return response // メソッド実行
      */
@@ -56,10 +42,13 @@ class Router
      */
     private function getRouteArrayByHttpMethod($http_method)
     {
+        // routeディレクトリからroute配列を読み込み
+        include('/Users/asahi.aihara/ms_data_tool/route/web.php');
+
         if ($http_method === 'GET') {
-            return $this->route_get_array;
+            return $route_get_array;
         } elseif($http_method === 'POST') {
-            return $this->route_post_array;
+            return $route_post_array;
         }
     }
 
