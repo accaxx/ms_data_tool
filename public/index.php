@@ -14,7 +14,7 @@
     $loader->register();
 
     $database = new Tests();
-    $database->getTests();
+    $database->getAll();
 
     $router = new Router();
     $router->execActionByRequest();
