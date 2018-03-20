@@ -10,8 +10,7 @@ class BaseController
      */
     protected function view($view_name)
     {
-        $root = '/Users/asahi.aihara/ms_data_tool/';
-        $view = $root . 'resources/view/' . $view_name .'.html';
+        $view =  __DIR__ . '/../resources/view/' . $view_name . '.html';
         readfile($view);
     }
 }

@@ -43,7 +43,7 @@ class Router
     private function getRouteArrayByHttpMethod($http_method)
     {
         // routeディレクトリからroute配列を読み込み
-        require('/Users/asahi.aihara/ms_data_tool/route/web.php');
+        include( __DIR__.'/../route/web.php');
 
         if ($http_method === 'GET') {
             return $route_get_array;

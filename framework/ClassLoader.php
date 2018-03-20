@@ -2,12 +2,10 @@
 
 class ClassLoader
 {
+    private $root =  __DIR__.'/../';
 
-    private $root_dir;
-
-    public function __construct($root)
+    public function __construct()
     {
-        $this->root_dir = $root;
     }
 
     /**
@@ -25,7 +23,7 @@ class ClassLoader
     public function loadClass($class)
     {
         $classNamespace = ltrim($class, '\\');
-        $classFileName = $this->root_dir . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $classNamespace) . '.php';
+        $classFileName = $this->root . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $classNamespace) . '.php';
         if(is_readable($classFileName)){
             require_once($classFileName);
             return true;

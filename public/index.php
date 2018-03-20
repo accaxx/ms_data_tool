@@ -7,9 +7,8 @@
 
 <h1><?php
     use framework\Router;
-    $root = '/Users/asahi.aihara/ms_data_tool';
-    require_once $root . '/framework/ClassLoader.php';
-    $loader = new ClassLoader($root);
+    require_once  __DIR__.'/../framework/ClassLoader.php';
+    $loader = new ClassLoader();
     $loader->register();
 
     $router = new Router();
