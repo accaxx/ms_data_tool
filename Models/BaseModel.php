@@ -11,6 +11,7 @@ class BaseModel
      */
     protected function __construct()
     {
+        // DBへ接続
         $this->connectDatabase();
         // 呼び出しクラスからテーブル名を定義
         $this->class = strtolower(ltrim(get_called_class(), 'Models\\'));
@@ -33,7 +34,7 @@ class BaseModel
     /**
      * クラスと名前が同じテーブルから全てのカラムを表示
      */
-    public function getAll()
+    public function getAllByClass()
     {
         foreach($this->db->query("SELECT * from $this->class") as $row) {
             print_r($row);
