@@ -20,8 +20,14 @@ class BaseModel
     protected function connectDatabase()
     {
         try {
-            $this->db = new \PDO('mysql:host=localhost;dbname=data_tool;charset=utf8;unix_socket=/tmp/mysql.sock',
-                DB_USER, DB_PASSWORD, array(\PDO::ATTR_EMULATE_PREPARES => false));
+            $this->db = new \PDO(
+                'mysql:host='. DB_HOST .
+                ';dbname='. DB_NAME .
+                ';charset=' . DB_CHARSET .
+                ';unix_socket=' . DB_UNIX_SOCKET,
+                DB_USER, DB_PASSWORD,
+                array(\PDO::ATTR_EMULATE_PREPARES => false)
+            );
         } catch (\PDOException $e) {
             print "error: " . $e->getMessage() . "<br />";
             die();
