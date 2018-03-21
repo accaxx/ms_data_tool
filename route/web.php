@@ -7,5 +7,6 @@ return [
 
     //POSTメソッド/URIに対してコントローラ/メソッドを定義
     'post' => [
+        '/table' => 'TableController@index'
     ],
 ];
