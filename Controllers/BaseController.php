@@ -11,8 +11,7 @@ class BaseController
      */
     public function view($view_name, $val = [])
     {
-        $root = '/Users/asahi.aihara/ms_data_tool/';
-        $view = $root . 'resources/view/' . $view_name .'.php';
+        $view = ROOT_DIR . '/resources/view/' . $view_name .'.php';
         if (is_readable($view)) {
             require_once($view);
         }

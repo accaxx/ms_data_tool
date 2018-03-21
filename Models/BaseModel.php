@@ -21,7 +21,7 @@ class BaseModel
     {
         try {
             $this->db = new \PDO('mysql:host=localhost;dbname=data_tool;charset=utf8;unix_socket=/tmp/mysql.sock',
-                'dbuser', 'Dbuser100!', array(\PDO::ATTR_EMULATE_PREPARES => false));
+                DB_USER, DB_PASSWORD, array(\PDO::ATTR_EMULATE_PREPARES => false));
         } catch (\PDOException $e) {
             print "error: " . $e->getMessage() . "<br />";
             die();

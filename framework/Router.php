@@ -11,7 +11,7 @@ class Router
     public function __construct()
     {
         // Route設定
-        $route_array = require_once('/Users/asahi.aihara/ms_data_tool/route/web.php');
+        $route_array = require_once(ROOT_DIR.'/route/web.php');
         $this->get_route_array = $route_array['get'];
         $this->post_route_array = $route_array['post'];
 
