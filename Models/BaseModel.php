@@ -4,7 +4,6 @@ namespace Models;
 class BaseModel
 {
     protected $db;
-    protected $class;
 
     /**
      * BaseModel constructor.
@@ -13,8 +12,6 @@ class BaseModel
     {
         // DBへ接続
         $this->connectDatabase();
-        // 呼び出しクラスからテーブル名を定義
-        $this->class = strtolower(ltrim(get_called_class(), 'Models\\'));
     }
 
     /**
@@ -29,16 +26,5 @@ class BaseModel
             print "error: " . $e->getMessage() . "<br />";
             die();
         }
-    }
-
-    /**
-     * クラスと名前が同じテーブルから全てのカラムを表示
-     */
-    public function getAllByClass()
-    {
-        foreach($this->db->query("SELECT * from $this->class") as $row) {
-            print_r($row);
-        }
-        $this->db = null;
     }
 }

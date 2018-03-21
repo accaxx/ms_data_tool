@@ -14,7 +14,7 @@ class IndexController extends BaseController
 
     /**
      * indexページ取得
-     * @return mixed
+     * @return response View && all_table_name
      */
     public function index()
     {

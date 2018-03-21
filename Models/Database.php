@@ -15,6 +15,7 @@ class Database extends BaseModel
 
     /**
      * データベースにある全てのテーブル名を取得する
+     * @return array $all_tables_name
      */
     public function getAllTablesName()
     {
@@ -28,5 +29,4 @@ class Database extends BaseModel
         $this->db = null;
         return $all_tables_name;
     }
-
 }
