@@ -5,7 +5,7 @@ use Models\Table as TableModel;
 
 class TableController extends BaseController
 {
-    protected $table_model;
+    private $table_model;
 
     public function __construct()
     {

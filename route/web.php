@@ -1,12 +1,12 @@
 <?php
 return [
     //GETメソッド/URIに対してコントローラ/メソッドを定義
-    'get' => [
+    'GET' => [
         '/' => 'IndexController@index',
     ],
 
     //POSTメソッド/URIに対してコントローラ/メソッドを定義
-    'post' => [
+    'POST' => [
         '/table' => 'TableController@index'
     ],
 ];

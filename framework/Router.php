@@ -3,21 +3,14 @@ namespace framework;
 
 class Router
 {
-    private $http_method;
-    private $uri;
-    private $get_route_array;
-    private $post_route_array;
+    private $request;
+    private $all_route_array;
 
-    public function __construct()
+    public function __construct($request)
     {
         // Route設定
-        $route_array = require_once(ROOT_DIR.'/route/web.php');
-        $this->get_route_array = $route_array['get'];
-        $this->post_route_array = $route_array['post'];
-
-        // Request設定
-        $this->http_method =  $_SERVER['REQUEST_METHOD'];
-        $this->uri = $_SERVER['REQUEST_URI'];
+        $this->all_route_array = require_once(ROOT_DIR.'/route/web.php');
+        $this->request = $request;
     }
 
     /**
@@ -26,14 +19,7 @@ class Router
      */
     public function execActionByRequest()
     {
-        // HTTPメソッドにより対応したルーティングを取得
-        $route_array = $this->getRouteArrayByHttpMethod();
-
-        if (!array_key_exists($this->uri, $route_array)) {
-            return false;
-        }
-        $route = $route_array[$this->uri];
-        $action = $this->getActionInfoByRoute($route);
+        $action = $this->getActionInfoByRoute($this->getRouteByUri());
         $obj = new $action['controller']; // 変数からインスタンス化
         return call_user_func(array($obj, $action['method'])); //変数で関数を実行するため
     }
@@ -51,16 +37,14 @@ class Router
     }
 
     /**
-     * HTTPメソッドからRouteを分岐
-     * @return array // GETかPOST用のRoute配列
+     * URIから対応したcontroller@methodのroutingを取得
+     * @return string routing
      */
-    private function getRouteArrayByHttpMethod()
+    private function getRouteByUri()
     {
-        if ($this->http_method === 'GET') {
-            return $this->get_route_array;
-        } elseif ($this->http_method === 'POST') {
-            return $this->post_route_array;
+        if (!isset($this->all_route_array[$this->request->method][$this->request->uri])) {
+            return false;
         }
+        return $this->all_route_array[$this->request->method][$this->request->uri];
     }
-
 }
