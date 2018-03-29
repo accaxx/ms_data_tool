@@ -19,7 +19,7 @@ class Database extends BaseModel
      */
     public function getAllTablesName()
     {
-        $data = $this->db->query("SHOW TABLES")->fetchall(\PDO::FETCH_ASSOC);
+        $data = $this->db->query("SHOW TABLES;")->fetchall(\PDO::FETCH_ASSOC);
         $all_tables_name = [];
 
         foreach ($data as $key => $value) {
