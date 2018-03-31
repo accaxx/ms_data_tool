@@ -35,7 +35,7 @@ class BaseModel
     }
 
     /**
-     * 指定テーブルにデータ1つを追加
+     * 指定テーブルにデータ1行を追加
      */
     public function create($val = [])
     {
@@ -46,5 +46,14 @@ class BaseModel
         // シングルクオートで囲まなければvalueがエラーはくため
         $values = "'" . implode("','", array_values($val)) . "'";
         $this->db->query("INSERT INTO $this->table_name ($columns) VALUES ($values);");
+    }
+
+    /**
+     * 指定テーブルからIDから指定したデータ1行を削除
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $this->db->query("DELETE FROM $this->table_name where id = '$id';");
     }
 }

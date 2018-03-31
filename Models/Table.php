@@ -25,7 +25,7 @@ class Table extends BaseModel
      */
     public function getAllData()
     {
-        $all_data = $this->db->query("SELECT * FROM $this->table_name")->fetchall(\PDO::FETCH_ASSOC|\PDO::FETCH_UNIQUE);
+        $all_data = $this->db->query("SELECT * FROM $this->table_name")->fetchall(\PDO::FETCH_ASSOC);
         $this->db = null;
         return $all_data;
     }

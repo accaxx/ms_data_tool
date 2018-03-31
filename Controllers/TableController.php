@@ -37,12 +37,24 @@ class TableController extends BaseController
     }
 
     /**
-     * 指定テーブルの新規データを保存後データ一覧へリダイレクトする
+     * 指定テーブルの新規データを保存後データ一覧を表示
      * @return response
      */
     public function create()
     {
         $this->table_model->create($this->request->post_array);
+        return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
+    }
+
+    /**
+     * 指定テーブルの既存データを削除後データ一覧を表示
+     * @return response
+     */
+    public function delete()
+    {
+        if (isset($this->request->post_array['id'])) {
+            $this->table_model->delete($this->request->post_array['id']);
+        }
         return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
     }
 }

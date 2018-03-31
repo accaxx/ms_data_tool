@@ -13,6 +13,13 @@
     ?>
     <input type="submit" value="1行追加する">
     </form>
+    <form action="/table/delete" method="post">
+        <?php
+            echo '<input type="hidden" name="table_name" value="'. $val['table_name'] . '">';
+        ?>
+        ID：<input type="text" name="id" value="">
+        <input type="submit" value="1行削除する">
+    </form>
 </p>
 <p>
     <table border="1">
