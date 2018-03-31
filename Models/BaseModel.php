@@ -39,11 +39,12 @@ class BaseModel
      */
     public function create($val = [])
     {
-        // table_name が ms_positionsもある
-        foreach ($val as $key => $value) {
-            if ($key != 'table_name') {
-                $this->db->query("INSERT INTO $this->table_name ($key) VALUES ('$value');");
-            }
-        }
+        // POSTで送っているtable_nameは不必要
+        unset($val['table_name']);
+
+        $columns = implode(",", array_keys($val));
+        // シングルクオートで囲まなければvalueがエラーはくため
+        $values = "'" . implode("','", array_values($val)) . "'";
+        $this->db->query("INSERT INTO $this->table_name ($columns) VALUES ($values);");
     }
 }
