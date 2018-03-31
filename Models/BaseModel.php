@@ -33,4 +33,17 @@ class BaseModel
             die();
         }
     }
+
+    /**
+     * 指定テーブルにデータ1つを追加
+     */
+    public function create($val = [])
+    {
+        // table_name が ms_positionsもある
+        foreach ($val as $key => $value) {
+            if ($key != 'table_name') {
+                $this->db->query("INSERT INTO $this->table_name ($key) VALUES ('$value');");
+            }
+        }
+    }
 }

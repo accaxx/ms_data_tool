@@ -2,16 +2,19 @@
 namespace Controllers;
 
 use Models\Table as TableModel;
+use framework\Request;
 
 class TableController extends BaseController
 {
     private $table_model;
+    private $request;
     private $table_name;
 
     public function __construct()
     {
         // *todo URIから変数を取得する
-        $this->table_name = $_POST['table_name'];
+        $this->request = new Request();
+        $this->table_name = $this->request->post_array['table_name'];
         $this->table_model = new TableModel($this->table_name);
     }
 
@@ -31,5 +34,15 @@ class TableController extends BaseController
     public function getCreate()
     {
         return $this->view('table/create', ['all_data' => $this->table_model->getAllColumns(), 'table_name' => $this->table_name]);
+    }
+
+    /**
+     * 指定テーブルの新規データを保存後データ一覧へリダイレクトする
+     * @return response
+     */
+    public function create()
+    {
+        $this->table_model->create($this->request->post_array);
+        return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
     }
 }

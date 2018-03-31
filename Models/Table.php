@@ -8,7 +8,7 @@ namespace Models;
  */
 class Table extends BaseModel
 {
-    private $table_name;
+    public $table_name;
 
     /**
      * Table constructor.

@@ -17,6 +17,7 @@
     <form action="/table/create" method="post">
         <table border="1"><thead>
             <?php
+                echo '<input type="hidden" name="table_name" value="'. $val['table_name'] . '">';
                 foreach ($val['all_data'] as $column) {
                     // 見出し
                     echo '<th align="center">'. $column['Field'] .'('. $column['Type'] . ')</th>';

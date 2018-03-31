@@ -5,6 +5,7 @@ class Request
 {
     public $method;
     public $uri;
+    public $post_array = [];
 
     /**
      * Request 全体で使うパラメータ設定
@@ -13,6 +14,7 @@ class Request
     {
         $this->method = $this->getHttpMethod();
         $this->uri = $this->getUri();
+        $this->post_array = $this->getPostArray();
     }
 
     /**
@@ -43,5 +45,19 @@ class Request
             return false;
         }
         return $uri;
+    }
+
+    public function getPostArray()
+    {
+        $inputs = $_POST;
+        $post_array = [];
+
+        // リクエスト一覧を受け取って保存する
+        foreach ($inputs as $key => $input) {
+            if (!empty($input)) {
+                $post_array += [$key => $input];
+            }
+        }
+        return $post_array;
     }
 }
