@@ -8,9 +8,10 @@ return [
     //POSTメソッド/URIに対してコントローラ/メソッドを定義
     'POST' => [
         '/table' => 'TableController@index',
-        // 変数無しURIver. *todo /tablest/:table_name/create
         '/table/get_create' => 'TableController@getCreate',
         '/table/create' => 'TableController@create',
         '/table/delete' => 'TableController@delete',
+        '/table/get_update' => 'TableController@getUpdate',
+        '/table/update' => 'TableController@update',
     ],
 ];

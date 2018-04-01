@@ -57,4 +57,23 @@ class TableController extends BaseController
         }
         return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
     }
+
+    /**
+     * 指定テーブルのデータ編集ページを表示
+     * @return response
+     */
+    public function getUpdate()
+    {
+        return $this->view('table/update', ['data' => $this->table_model->getColumnById($this->request->post_array['id']), 'table_name' => $this->table_name]);
+    }
+
+    /**
+     * 指定テーブルのデータを更新後データ一覧を表示
+     * @return response
+     */
+    public function update()
+    {
+        $this->table_model->update($this->request->post_array);
+        return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
+    }
 }

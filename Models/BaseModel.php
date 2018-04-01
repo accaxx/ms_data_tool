@@ -56,4 +56,23 @@ class BaseModel
     {
         $this->db->query("DELETE FROM $this->table_name where id = '$id';");
     }
+
+    /**
+     * 指定テーブルからIDから指定したデータ1行を更新
+     * @param $id
+     */
+    public function update($val = [])
+    {
+        // POSTで送っているtable_nameは不必要
+        unset($val['table_name']);
+        $id = $val['id'];
+        $update_columns = [];
+
+        foreach($val as $key => $value) {
+            array_push($update_columns, $key ."=" . "'$value'");
+        }
+        $update_columns_query = implode(",", $update_columns);
+
+        $this->db->query("UPDATE $this->table_name SET $update_columns_query where id = '$id';");
+    }
 }

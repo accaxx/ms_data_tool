@@ -40,4 +40,19 @@ class Table extends BaseModel
         $this->db = null;
         return $all_data;
     }
+
+    /**
+     * @param $id
+     * @return array $data
+     */
+    public function getColumnById($id)
+    {
+        $data = $this->db->query("SELECT * FROM $this->table_name WHERE id = $id")->fetchall(\PDO::FETCH_ASSOC);
+        $this->db = null;
+        if (isset($data[0])) {
+            $data_first = $data[0];
+            return $data_first;
+        }
+        return false;
+    }
 }
