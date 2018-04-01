@@ -24,7 +24,7 @@ class TableController extends BaseController
      */
     public function index()
     {
-        return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
+        return $this->viewAll();
     }
 
     /**
@@ -43,7 +43,7 @@ class TableController extends BaseController
     public function create()
     {
         $this->table_model->create($this->request->post_array);
-        return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
+        return $this->viewAll();
     }
 
     /**
@@ -55,7 +55,7 @@ class TableController extends BaseController
         if (isset($this->request->post_array['id'])) {
             $this->table_model->delete($this->request->post_array['id']);
         }
-        return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
+        return $this->viewAll();
     }
 
     /**
@@ -74,6 +74,11 @@ class TableController extends BaseController
     public function update()
     {
         $this->table_model->update($this->request->post_array);
+        return $this->viewAll();
+    }
+
+    private function viewAll()
+    {
         return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
     }
 }

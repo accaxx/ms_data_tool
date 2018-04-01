@@ -36,6 +36,7 @@ class BaseModel
 
     /**
      * 指定テーブルにデータ1行を追加
+     * @param array $val
      */
     public function create($val = [])
     {
@@ -43,7 +44,6 @@ class BaseModel
         unset($val['table_name']);
 
         $columns = implode(",", array_keys($val));
-        // シングルクオートで囲まなければvalueがエラーはくため
         $values = "'" . implode("','", array_values($val)) . "'";
         $this->db->query("INSERT INTO $this->table_name ($columns) VALUES ($values);");
     }
@@ -59,7 +59,7 @@ class BaseModel
 
     /**
      * 指定テーブルからIDから指定したデータ1行を更新
-     * @param $id
+     * @param array $val
      */
     public function update($val = [])
     {
