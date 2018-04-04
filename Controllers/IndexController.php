@@ -18,6 +18,6 @@ class IndexController extends BaseController
      */
     public function index()
     {
-        return $this->view('index', $this->database_model->getAllTablesName());
+        return $this->render($this->database_model->getAllTablesName());
     }
 }

@@ -65,13 +65,14 @@ class BaseModel
     {
         // POSTで送っているtable_nameは不必要
         unset($val['table_name']);
-        $id = $val['id'];
-        $update_columns = [];
+
+        $id = $val['id']; // query内は文字列
+        $update_columns_array = [];
 
         foreach($val as $key => $value) {
             array_push($update_columns, $key ."=" . "'$value'");
         }
-        $update_columns_query = implode(",", $update_columns);
+        $update_columns_query = implode(",", $update_columns_array);
 
         $this->db->query("UPDATE $this->table_name SET $update_columns_query where id = '$id';");
     }
