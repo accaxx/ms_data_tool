@@ -43,20 +43,12 @@
                 foreach ($key_array as $key){
                     echo '<th align="center">' . $key . '</th>';
                 }
-                echo '<th>update</th></tr></thead><tbody><tr>';
+                echo '</tr></thead><tbody><tr>';
                 // value(値)
                 foreach ($value as $column_value) {
                     echo '<td align="center">' . $column_value . '</td>';
 
                 }
-
-                if ($key == 'id') {
-                    $id = $value;
-                }
-                echo "<td><form action='/table/get_update' method='post'>
-                        <input type='hidden' name='id' value='. $id .'>
-                        <input type='submit' value='この行を更新する'></form></td>";
-                echo '</tr></tbody>';
             }
         ?>
     </table>

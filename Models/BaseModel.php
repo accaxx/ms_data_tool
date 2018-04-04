@@ -70,7 +70,7 @@ class BaseModel
         $update_columns_array = [];
 
         foreach($val as $key => $value) {
-            array_push($update_columns, $key ."=" . "'$value'");
+            array_push($update_columns_array, $key ."=" . "'$value'");
         }
         $update_columns_query = implode(",", $update_columns_array);
 
