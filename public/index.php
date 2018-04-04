@@ -1,11 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Example</title>
-</head>
-<body>
-
-<h1><?php
+<?php
     use framework\Router;
     use framework\Request;
 
@@ -21,7 +14,3 @@
     $request = new Request();
     $router = new Router($request);
     $router->execActionByRequest();
-?>
-</h1>
-</body>
-</html>
