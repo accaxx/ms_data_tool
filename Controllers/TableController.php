@@ -19,7 +19,7 @@ class TableController extends BaseController
 
     /**
      * 指定テーブルの全行を取得してビューへ渡し、ビューを表示する
-     * @return response
+     * @return action
      */
     public function index()
     {
@@ -76,6 +76,10 @@ class TableController extends BaseController
         return $this->viewAllTableData();
     }
 
+    /**
+     * tableのindexページ、テーブル内データ一覧を表示
+     * @return response
+     */
     private function viewAllTableData()
     {
         return $this->view('table/index', ['all_data' => $this->table_model->getAllData(), 'table_name' => $this->table_name]);
